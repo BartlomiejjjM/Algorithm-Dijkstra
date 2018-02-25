@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Vertex {
+public class Vertex implements Comparable<Vertex> {
 
     private String name;
-    private List <Edge> edges = new ArrayList<Edge>();
+    private List <Edge> edges = new ArrayList<>();
+    private float value;
 
     public Vertex(String name) {
         this.name = name;
@@ -17,6 +18,12 @@ public class Vertex {
         Edge edge = new Edge(edgevalue, Arrays.asList(this, other));
         edges.add(edge);
         other.edges.add(edge);
+    }
+    public void value(float value){
+        this.value=value;
+    }
+    public float value(){
+        return value;
     }
 
     public String getName() {
@@ -38,5 +45,10 @@ public class Vertex {
     @Override
     public String toString() {
         return name ;
+    }
+
+    @Override
+    public int compareTo(Vertex vertex) {
+        return Float.compare(value, vertex.value);
     }
 }
